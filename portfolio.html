@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Graphiste Freelance</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .galerie {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .galerie-img-wrap {
+      position: relative;
+      display: inline-block;
+      perspective: 600px;
+    }
+    .galerie img {
+      transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s, filter 0.3s;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      display: block;
+      max-width: 220px;
+    }
+    /* Effet sepia + zoom pour toutes les images */
+    .galerie-img-wrap img:hover {
+      filter: sepia(0.8) brightness(1.1);
+      transform: scale(1.15);
+    }
+    .galerie-img-wrap:hover .galerie-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .galerie-overlay {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(21,101,192,0.75);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      text-align: center;
+      padding: 0 12px;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.9);
+    }
+    .lightbox-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .lightbox-close:hover,
+    .lightbox-close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Portfolio</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services Digitaux</a></li>
+        <li><a href="services-nettoyage.html">Services Nettoyage</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Mes réalisations</h2>
+      <div class="galerie">
+    <div class="galerie-img-wrap">
+      <img src="solution numérique & digitale watt/1758994259698.jpg" alt="Logo entreprise nouveau 1">
+      <div class="galerie-overlay">Logo entreprise nouveau 1</div>
+    </div>
+    <div class="galerie-img-wrap">
+      <img src="solution numérique & digitale watt/copilot_image_1759134372843.jpeg" alt="Logo entreprise nouveau 2">
+      <div class="galerie-overlay">Logo entreprise nouveau 2</div>
+    </div>
+    <div class="galerie-img-wrap">
+      <img src="solution numérique & digitale watt/1759011000554.jpg" alt="Logo entreprise 1">
+      <div class="galerie-overlay">Logo entreprise 1</div>
+    </div>
+    <div class="galerie-img-wrap">
+      <img src="solution numérique & digitale watt/1759011029230.jpg" alt="Logo entreprise 2">
+      <div class="galerie-overlay">Logo entreprise 2</div>
+    </div>
+    <div class="galerie-img-wrap">
+      <img src="solution numérique & digitale watt/1759011161790.jpg" alt="Logo entreprise 3">
+      <div class="galerie-overlay">Logo entreprise 3</div>
+    </div>
+    <div class="galerie-img-wrap">
+      <img src="solution numérique & digitale watt/1759013222674.jpeg" alt="Logo entreprise 4">
+      <div class="galerie-overlay">Logo entreprise 4</div>
+    </div>
+      </div>
+      <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+      </div>
+      <p>
+        <a href="https://wa.me/2250546769545" target="_blank" class="icon-link icon-link--whatsapp">
+          Découvrez plus de créations en me contactant !
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="icon-img">
+          <span>+225 0546769545</span>
+        </a>
+      </p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 SNDW - Solution numérique & digitale WATT & Nettoie Tout Service. Tous droits réservés.</p>
+  </footer>
+  <script>
+    var modal = document.getElementById('lightbox');
+    var modalImg = document.getElementById('lightbox-img');
+    var closeBtn = document.getElementsByClassName('lightbox-close')[0];
+    document.querySelectorAll('.galerie img').forEach(img => {
+      img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+      }
+    });
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      var btn = document.querySelector('.theme-toggle');
+      btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>

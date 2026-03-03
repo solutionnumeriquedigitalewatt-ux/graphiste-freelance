@@ -1,5 +1,5 @@
 Export timestamp: 2025-10-12 07:50:56 (workspace snapshot + file contents)
-ZIP file created on Desktop: C:\Users\Utilisateur01\Desktop\graphistefreelance_export_20251012_075056.zip
+ZIP file created: graphistefreelance_export_20251012_075056.zip
 
 --- contact.html ---
 <!DOCTYPE html>
